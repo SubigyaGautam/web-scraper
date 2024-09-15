@@ -104,11 +104,18 @@ Example:
 
 | Price | Outbound Route | Inbound Route | Airlines | Outbound Departure Time | Outbound Date | Outbound Duration | Inbound Departure Time | Inbound Date | Inbound Duration | Outbound Layover | Inbound Layover |
 |-------|----------------|---------------|----------|-------------------------|---------------|-------------------|------------------------|--------------|------------------|------------------|-----------------|
-| 103.0 | MSY - EWR | EWR - MSY | Spirit Airlines / Spirit Airlines | 7:00 AM | Tue, Dec 17 | 3h 2m | 10:03 PM | Thu, Jan 9 | 3h 2m | [] | [] |
-| 113.0 | MSY - EWR | EWR - MSY | Spirit Airlines / Spirit Airlines | 3:20 PM | Tue, Dec 17 | 3h 2m | 10:03 PM | Thu, Jan 9 | 3h 2m | ['2h 17m layover in Orlando International Airport'] | [] |
-| 118.0 | MSY - EWR | EWR - MSY | Spirit Airlines / Spirit Airlines | 7:00 AM | Tue, Dec 17 | 3h 2m | 1:11 PM | Thu, Jan 9 | 3h 2m | [] | ['2h 54m layover in Hartsfield Jackson Atlanta International Airport'] |
+| 103.0 | MSY - EWR | EWR - MSY | Spirit Airlines / Spirit Airlines | 7:00 AM | Tue, Dec 17 | 3h 2m | 10:03 PM | Thu, Jan 9 | 3h 2m | None | None |
+| 113.0 | MSY - EWR | EWR - MSY | Spirit Airlines / Spirit Airlines | 3:20 PM | Tue, Dec 17 | 3h 2m | 10:03 PM | Thu, Jan 9 | 3h 2m | 2h 17m in Orlando | None |
+| 118.0 | MSY - EWR | EWR - MSY | Spirit Airlines / Spirit Airlines | 7:00 AM | Tue, Dec 17 | 3h 2m | 1:11 PM | Thu, Jan 9 | 3h 2m | None | 2h 54m in Atlanta |
+| 127.0 | MSY - EWR | EWR - MSY | Spirit Airlines / Spirit Airlines | 3:20 PM | Tue, Dec 17 | 3h 2m | 1:11 PM | Thu, Jan 9 | 3h 2m | 2h 17m in Orlando | 2h 54m in Atlanta |
+| 141.0 | MSY - EWR | EWR - MSY | Spirit Airlines / Spirit Airlines | 7:00 AM | Tue, Dec 17 | 3h 2m | 6:00 AM | Thu, Jan 9 | 3h 2m | None | 4h 59m in Orlando |
+| 147.0 | MSY - EWR | LGA - MSY | Spirit Airlines / Spirit Airlines | 7:00 AM | Tue, Dec 17 | 3h 2m | 8:52 AM | Thu, Jan 9 | 3h 2m | None | 3h 42m in Atlanta |
+| 150.0 | MSY - EWR | EWR - MSY | Spirit Airlines / Spirit Airlines | 3:20 PM | Tue, Dec 17 | 3h 2m | 6:00 AM | Thu, Jan 9 | 3h 2m | 2h 17m in Orlando | 4h 59m in Orlando |
+| 156.0 | MSY - LGA | EWR - MSY | Spirit Airlines / Spirit Airlines | 11:01 AM | Tue, Dec 17 | 3h 2m | 10:03 PM | Thu, Jan 9 | 3h 2m | 41m in Detroit | None |
+| 156.0 | MSY - EWR | LGA - MSY | Spirit Airlines / Spirit Airlines | 3:20 PM | Tue, Dec 17 | 3h 2m | 8:52 AM | Thu, Jan 9 | 3h 2m | 2h 17m in Orlando | 3h 42m in Atlanta |
+| 160.0 | MSY - LGA | JFK - MSY | Frontier Airlines / Frontier Airlines | 4:24 PM | Tue, Dec 17 | 3h 2m | 8:56 AM | Thu, Jan 9 | 3h 2m | 2h 10m in Raleigh | 6h 8m in Atlanta |
 
 ## Notes
 - Prices are in USD.
 - Layover times indicate the duration of stops at respective airports.
-- Ensure to check the airline's website for the most up-to-date information on flight schedules and availability.
+- This can only provide a general idea. Please ensure to check the airline's website for the most up-to-date information on flight schedules and availability.
