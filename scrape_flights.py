@@ -75,8 +75,9 @@ def scrape_flights(from_location, to_location, departure_date, return_date):
                     leg_data
                 ).strip()
 
-                duration_element = leg.find_element(By.CSS_SELECTOR, '.fl-leg__fl-length span')
-                duration = duration_element.text.strip()
+                duration = driver.execute_script("""
+                    return document.querySelector('.fl-leg__fl-length span').textContent;
+                """)
 
                 layover_elements = leg_data.find_elements(By.CSS_SELECTOR, '.leg-data__stop-icon')
                 layovers = [layover.get_attribute('data-original-title') for layover in layover_elements if layover.get_attribute('data-original-title')]
@@ -168,14 +169,17 @@ def main():
                     all_results.append(flights)
 
     # Writing results to CSV
-    # Write results to CSV
-    # Write results to CSV
+
     with open(args.output_file, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow([
-            'Price', 'Outbound', 'Inbound', 
-            'Outbound Date', 'Inbound Date', 
-            'Airlines', 'Outbound Time', 'Inbound Time'
+            'Price',
+            'Outbound Route',
+            'Inbound Route',
+            'Airlines',
+            'Outbound Departure Time','Outbound Date','Outbound Duration'
+            'Inbound Departure Time', 'Inbound Date','Inbound Duration',
+            'Outbound Layover', 'Inbound Layover'
         ])
         
         print(all_results)
@@ -184,24 +188,24 @@ def main():
         for flight_group in all_results:
             for flight_pair in flight_group:
                 outbound = next((f for f in flight_pair if f['Leg'] == 'Outbound'), None)
-                print(outbound)
-                print('--------------------------------------------------------') 
                 inbound = next((f for f in flight_pair if f['Leg'] == 'Return'), None)
-                print(inbound)
-                print('xxxzzzzzzzzzzzzzzzzzzzzzzzz...') 
 
                 if outbound and inbound:
-                    price = outbound['Price'] # Assuming price is the same for both legs
+                    price = outbound['Price']  # Assuming price is the same for both legs
 
                     writer.writerow([
                         price,
                         f"{outbound['Departure IATA']} - {outbound['Arrival IATA']}",
                         f"{inbound['Departure IATA']} - {inbound['Arrival IATA']}",
-                        outbound['Departure Date'],
-                        inbound['Departure Date'],
                         f"{outbound['Airline Name']} / {inbound['Airline Name']}",
                         outbound['Departure Time'],
-                        inbound['Departure Time']
+                        outbound['Departure Date'],
+                        outbound['Duration'],
+                        inbound['Departure Time'],
+                        inbound['Departure Date'],
+                        inbound['Duration'],
+                        outbound['Layovers'],  # Outbound Layover
+                        inbound['Layovers']    # Inbound Layover
                     ])
                 elif outbound:
                     # Handle one-way trips (only outbound flight)
@@ -210,11 +214,15 @@ def main():
                         price,
                         f"{outbound['Departure IATA']} - {outbound['Arrival IATA']}",
                         '',  # No inbound flight
-                        outbound['Departure Date'],
-                        '',  # No inbound date
                         outbound['Airline Name'],
                         outbound['Departure Time'],
-                        ''  # No inbound time
+                        outbound['Departure Date'],
+                        outbound['Duration'],
+                        '',  # No inbound departure time
+                        '',  # No inbound date
+                        '',  # No inbound duration
+                        outbound['Layovers'],  # Outbound Layover
+                        ''  # No inbound layovers
                     ])
                 elif inbound:
                     # Handle return-only trips
@@ -223,11 +231,15 @@ def main():
                         price,
                         '',  # No outbound flight
                         f"{inbound['Departure IATA']} - {inbound['Arrival IATA']}",
-                        '',  # No outbound date
-                        inbound['Departure Date'],
                         inbound['Airline Name'],
-                        '',  # No outbound time
-                        inbound['Departure Time']
+                        '',  # No outbound departure time
+                        '',  # No outbound date
+                        '',  # No outbound duration
+                        inbound['Departure Time'],
+                        inbound['Departure Date'],
+                        inbound['Duration'],
+                        '',  # No outbound layovers
+                        inbound['Layovers']  # Inbound Layover
                     ])
 if __name__ == '__main__':
     main()
