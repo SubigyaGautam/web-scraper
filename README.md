@@ -37,7 +37,7 @@ python scrape_flights.py --from-locations JFK,IAH,MSY --to-locations MSD --depar
 # Flight Data
 Example:
 ``bash
- python scrape_flights.py --from-locations MSY --to-locations JFK --departure-date "2024-12-17" --arrival-date "2025-01-09" --output-file new_flights.csv
+ python scrape_flights.py --from-locations MSY --to-locations EWR --departure-date "2024-12-17" --arrival-date "2025-01-09" --output-file new_flights.csv
 ``
 
 | Price | Outbound Route | Inbound Route | Airlines | Outbound Departure Time | Outbound Date | Outbound Duration | Inbound Departure Time | Inbound Date | Inbound Duration | Outbound Layover | Inbound Layover |
