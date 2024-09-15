@@ -51,4 +51,4 @@ Example:
 - Layover times indicate the duration of stops at respective airports.
 - This data provides a general idea. Always check the airline's website for the most up-to-date information on flight schedules and availability.
 
-# Some other
+# Other tools coming soon...
