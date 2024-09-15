@@ -1,3 +1,5 @@
+# This repo is for learning purpose only
+
 # Flight Data Scraper
 scrape_flights.py : This script scrapes flight details from ScholarTrip and saves  flights to a CSV file.
 
