@@ -1,11 +1,33 @@
-# Flight Data Scraper scrape_flights.py
-scrape_flights.py : This script scrapes flight details from ScholarTrip and saves  flights to a CSV file.
+# Flight Data Scraper
+
+## Overview
+
+`scrape_flights.py` is a Python script designed to scrape detailed flight information from ScholarTrip and save the results to a CSV file. This tool helps users efficiently find and compare the cheapest flights across multiple departure locations and destinations, covering various date ranges.
+
+## Purpose
+
+The primary aim of this script is to streamline the process of identifying the most cost-effective flights by consolidating data into a single CSV file. By automating the data collection from multiple sources and date ranges, the script eliminates the need for repetitive manual searches on the website, providing a comprehensive overview of flight options in one place.
+
+## Features
+
+- **Comprehensive Search**: Retrieve flight details from multiple departure locations to various destinations.
+- **Flexible Date Ranges**: Specify both departure and arrival dates with optional ranges to capture a wider set of flight options.
+- **CSV Output**: Automatically save the collected flight data into a CSV file for easy analysis and comparison.
+
+## Benefits
+
+- **Efficiency**: Avoids the need for multiple visits to the website by consolidating flight information into a single file.
+- **Convenience**: Simplifies the process of comparing flight options and finding the best deals.
+- **Flexibility**: Allows for customized searches across different dates and locations.
+
+With `scrape_flights.py`, users can easily gather and analyze flight data, making travel planning more efficient and straightforward.
+
 
 ## How to Execute
 To run the script, use the following command:
 
 ```bash
-python scrape_flights.py --from-locations JFK --to-locations ICN --departure-date "2024-12-17 3d" --arrival-date "2025-01-09 2d" --output-file new_flights.csv
+python scrape_flights.py --from-locations <Source-Airportcodes> --to-locations <Destination-Airportcodes> --departure-date "<date>" --arrival-date "<date>" --output-file <name-of-output-file>
 
 ```
 
