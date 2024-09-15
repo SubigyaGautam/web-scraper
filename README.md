@@ -1,20 +1,20 @@
-# Flight Data Scraper
+# This repo contains various webscraping tools that can be handy :)
 
-## Overview
+# Flight Data Scraper
 
 `scrape_flights.py` is a Python script designed to scrape detailed flight information from ScholarTrip and save the results to a CSV file. This tool helps users efficiently find and compare the cheapest flights across multiple departure locations and destinations, covering various date ranges.
 
-## Purpose
+# Purpose
 
 The primary aim of this script is to streamline the process of identifying the most cost-effective flights by consolidating data into a single CSV file. By automating the data collection from multiple sources and date ranges, the script eliminates the need for repetitive manual searches on the website, providing a comprehensive overview of flight options in one place.
 
-## Features
+# Features
 
 - **Comprehensive Search**: Retrieve flight details from multiple departure locations to various destinations.
 - **Flexible Date Ranges**: Specify both departure and arrival dates with optional ranges to capture a wider set of flight options.
 - **CSV Output**: Automatically save the collected flight data into a CSV file for easy analysis and comparison.
 
-## How to Execute
+# How to Execute
 
 To run the script, use the following command:
 
@@ -50,3 +50,5 @@ Example:
 - Prices are in USD.
 - Layover times indicate the duration of stops at respective airports.
 - This data provides a general idea. Always check the airline's website for the most up-to-date information on flight schedules and availability.
+
+# Some other
