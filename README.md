@@ -1,9 +1,7 @@
-# Flight Scraper
-
-This script scrapes flight details from ScholarTrip and saves  flights to a CSV file.
+# Flight Data Scraper
+scrape_flights.py : This script scrapes flight details from ScholarTrip and saves  flights to a CSV file.
 
 ## How to Execute
-
 To run the script, use the following command:
 
 ```bash
