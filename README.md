@@ -22,8 +22,8 @@ To run the script, use the following command:
 python scrape_flights.py --from-locations <Source-Airportcodes> --to-locations <Destination-Airportcodes> --departure-date "<date>" --arrival-date "<date>" --output-file <name-of-output-file>
 
 Parameters
---from-locations: Comma-separated list of departure airport codes (e.g., JFK,IAH,MSY).
---to-locations: Comma-separated list of arrival airport codes (e.g., ICN).
+--from-locations: Space-separated list of departure airport codes (e.g., JFK IAH MSY).
+--to-locations: Space-separated list of arrival airport codes (e.g., ICN KTM).
 --departure-date: The departure date with optional range (e.g., "2024-12-17 3d").
 --arrival-date: The arrival date with optional range (e.g., "2025-01-09 2d").
 --output-file: The CSV file to save the results (e.g., new_flights.csv).
