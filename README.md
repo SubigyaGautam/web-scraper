@@ -31,7 +31,7 @@ Parameters
 
 Example
 ```bash
-python scrape_flights.py --from-locations JFK,IAH,MSY --to-locations MSD --departure-date "2024-12-17 3d" --arrival-date "2025-01-09 3d" --output-file new_flights.csv
+python scrape_flights.py --from-locations JFK IAH MSY --to-locations MSD --departure-date "2024-12-17 3d" --arrival-date "2025-01-09 3d" --output-file new_flights.csv
 ```
 
 # Flight Data

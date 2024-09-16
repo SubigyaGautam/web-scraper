@@ -16,12 +16,15 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def scrape_flights(from_location, to_location, departure_date, return_date):
+    og_departure_date = departure_date
     chrome_driver_path = r'D:\chromedriver-win32\chromedriver-win32\chromedriver.exe'  # Update this path
 
     chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--disable-gpu')  # Disable GPU for better performance in headless mode
+    chrome_options.add_argument('--disable-extensions')  # Disable extensions for faster browsing
 
     service = Service(chrome_driver_path)
     driver = webdriver.Chrome(service=service, options=chrome_options)
@@ -29,10 +32,9 @@ def scrape_flights(from_location, to_location, departure_date, return_date):
     url = f'https://scholartrip.com/search/{from_location}-{to_location}/{departure_date}/{return_date}'
     driver.get(url)
 
-    logging.info(f'Scraping flights from {from_location} to {to_location} for {departure_date} - {return_date}')
+    logging.info(f'Scraping flights from {from_location} to {to_location} for {og_departure_date} - {return_date}')
 
-    time.sleep(25)
-
+    time.sleep(10)
 
     result_cards = WebDriverWait(driver, 10).until(
         EC.presence_of_all_elements_located((By.CLASS_NAME, 'search-result-card'))
@@ -100,14 +102,9 @@ def scrape_flights(from_location, to_location, departure_date, return_date):
         except Exception as e:
             logging.error(f"Error extracting information from a search result card: {e}")
 
-    # After the loop, print the first flight for debugging
-    if flights:
-        print("First flight details:", flights[0])
-        print('----------------------------------------------------')
-    else:
-        print("No flights found")
+    logging.info(f'Got {len(flights)} flights from {from_location} to {to_location} for {og_departure_date} - {return_date}')
+    driver.quit()
     return flights
-
 
 def parse_datetime(datetime_str):
     # Example: "4:30 PM<i>+2d</i>"
@@ -132,7 +129,7 @@ def convert_price(price_str):
         return None
 
 def main():
-    parser = argparse.ArgumentParser(description='Scrape and find the top 3 cheapest flights from ScholarTrip.')
+    parser = argparse.ArgumentParser(description='Scrape and find flights from ScholarTrip.')
     
     parser.add_argument('--from-locations', type=str, nargs='+', required=True, help='List of IATA codes for departure locations')
     parser.add_argument('--to-locations', type=str, nargs='+', required=True, help='List of IATA codes for arrival locations')
@@ -169,6 +166,7 @@ def main():
                     all_results.append(flights)
 
     # Writing results to CSV
+    logging.info(f'Writing {len(all_results)} flights to CSV')
 
     with open(args.output_file, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
@@ -181,9 +179,6 @@ def main():
             'Inbound Departure Time', 'Inbound Date','Inbound Duration',
             'Outbound Layover', 'Inbound Layover'
         ])
-        
-        print(all_results)
-        print('----------------- xxxxxxxxxxxxx---------------------------------------') 
         
         for flight_group in all_results:
             for flight_pair in flight_group:
